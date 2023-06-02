@@ -109,11 +109,14 @@ def alpaca_leaderboard(
     else:
         all_metrics = dict()
 
-    outputs_baseline = datasets.load_dataset(
-        "tatsu-lab/alpaca_farm",
-        "alpaca_farm_evaluation",
-        cache_dir=constants.DEFAULT_CACHE_DIR,
-    )["eval"]
+    # outputs_baseline = datasets.load_dataset(
+    #     "tatsu-lab/alpaca_farm",
+    #     "alpaca_farm_evaluation",
+    #     cache_dir=constants.DEFAULT_CACHE_DIR,
+    # )["eval"]
+    # rather than their eval set, we use ours.
+    import json
+    outputs_baseline = json.load(open("/net/nfs.cirrascale/allennlp/hamishi/open-instruct/text-davinci-003-greedy-long-output.json"))
 
     if len(all_outputs) != 805:
         logging.warning(
