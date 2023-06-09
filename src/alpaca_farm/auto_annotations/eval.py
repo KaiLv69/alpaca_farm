@@ -109,14 +109,15 @@ def alpaca_leaderboard(
     else:
         all_metrics = dict()
 
-    # outputs_baseline = datasets.load_dataset(
-    #     "tatsu-lab/alpaca_farm",
-    #     "alpaca_farm_evaluation",
-    #     cache_dir=constants.DEFAULT_CACHE_DIR,
-    # )["eval"]
     # rather than their eval set, we use ours.
-    import json
-    outputs_baseline = json.load(open("/net/nfs.cirrascale/allennlp/hamishi/open-instruct/text-davinci-003-greedy-long-output.json"))
+    # this is the data in `src/alpaca_farm/auto_annotations/annotators/greedy_gpt4/davinci_003_outputs.json`
+    outputs_baseline = datasets.load_dataset(
+        "hamishivi/alpaca-farm-davinci-003-2048-token",
+        cache_dir=constants.DEFAULT_CACHE_DIR,
+    )['train']
+    # alternatively, load your own...
+    # import json
+    # outputs_baseline = json.load(open("davinci_003_outputs.jsonl"))
 
     if len(all_outputs) != 805:
         logging.warning(
