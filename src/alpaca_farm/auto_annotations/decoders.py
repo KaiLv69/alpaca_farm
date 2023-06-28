@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import logging
-from typing import Optional, Sequence
+from typing import Optional, Sequence, List
 
 import tiktoken
 
@@ -21,7 +21,7 @@ from .. import openai_utils
 
 
 def openai_completions(
-    prompts: list[str],
+    prompts: List[str],
     model_name: str,
     tokens_to_favor: Optional[Sequence[str]] = None,
     tokens_to_avoid: Optional[Sequence[str]] = None,
@@ -30,7 +30,7 @@ def openai_completions(
     num_procs: Optional[int] = None,
     batch_size: Optional[int] = None,
     **decoding_kwargs,
-) -> list[str]:
+) -> List[str]:
     """Get openai completions for the given prompts. Allows additional parameters such as tokens to avoid and
     tokens to favor.
 
