@@ -21,7 +21,7 @@ import pathlib
 import re
 from collections import Counter
 from pathlib import Path
-from typing import Any, Sequence, Union, Dict, List
+from typing import Any, Sequence, Union, Dict, List, Tuple
 
 import datasets
 import numpy as np
@@ -104,7 +104,7 @@ def random_derangement(arr, max_loop=10, seed=None):
     return arr[list(random.choice(deranged_order))]
 
 
-def _find_first_match(text: str, outputs_to_match: Dict[str, Any]) -> tuple[Any, Any]:
+def _find_first_match(text: str, outputs_to_match: Dict[str, Any]) -> Tuple[Any, Any]:
     """Given text to parse and a dictionary of compiled regex to match, return the first match and corresponding key."""
     first_match = None
     first_key = None
@@ -155,7 +155,7 @@ def parse_batched_completion(completion: str, outputs_to_match: Dict[str, Any]) 
 
 def make_prompts(
     df: pd.DataFrame, template: str, batch_size: int = 1, padding_example=DUMMY_EXAMPLE
-) -> tuple[List[str], pd.DataFrame]:
+) -> Tuple[List[str], pd.DataFrame]:
     """Helper function to make batch prompts for a single template.
 
     Parameters
