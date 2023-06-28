@@ -118,7 +118,7 @@ def _find_first_match(text: str, outputs_to_match: Dict[str, Any]) -> Tuple[Any,
     return first_match, first_key
 
 
-def parse_batched_completion(completion: str, outputs_to_match: Dict[str, Any]) -> list[Any]:
+def parse_batched_completion(completion: str, outputs_to_match: Dict[str, Any]) -> List[Any]:
     """Parse a single batch of completions, by returning a sequence of keys in the order in which outputs_to_match
     was matched.
 
