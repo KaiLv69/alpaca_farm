@@ -1,6 +1,6 @@
 # paths are relative to auto_annotations
 
-greedy_gpt4 : # gpt-4-0314_pairwise_vH_b5_chatml-prompt
+greedy_gpt3.5 : # gpt-4-0314_pairwise_vH_b5_chatml-prompt
   prompt_templates:
     with_inputs: "annotators/greedy_gpt4/chatml_b5_with_inputs.txt"
     without_inputs: "annotators/greedy_gpt4/chatml_b5_without_inputs.txt"
