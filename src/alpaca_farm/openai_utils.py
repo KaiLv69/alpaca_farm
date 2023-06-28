@@ -30,7 +30,7 @@ import os
 import random
 import sys
 import time
-from typing import Optional, Sequence, Union
+from typing import Optional, Sequence, Union, Dict
 
 import openai
 import tqdm
@@ -139,7 +139,7 @@ def _openai_completion_helper(
 
 
 def _openai_completion(
-    prompts: Union[str, Sequence[str], Sequence[dict[str, str]], dict[str, str]],
+    prompts: Union[str, Sequence[str], Sequence[Dict[str, str]], Dict[str, str]],
     decoding_args: OpenAIDecodingArguments,
     model_name="text-davinci-003",
     sleep_time=2,
