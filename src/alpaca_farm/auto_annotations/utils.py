@@ -21,7 +21,7 @@ import pathlib
 import re
 from collections import Counter
 from pathlib import Path
-from typing import Any, Sequence, Union
+from typing import Any, Sequence, Union, Dict, List
 
 import datasets
 import numpy as np
@@ -29,7 +29,7 @@ import pandas as pd
 
 # don't load from utils to avoid unnecessary dependencies
 AnyPath = Union[str, os.PathLike, pathlib.Path]
-AnyData = Union[Sequence[dict[str, Any]], pd.DataFrame, datasets.Dataset]
+AnyData = Union[Sequence[Dict[str, Any]], pd.DataFrame, datasets.Dataset]
 DUMMY_EXAMPLE = dict(instruction="1+1=", output_1="2", input="", output_2="3")
 
 
@@ -104,7 +104,7 @@ def random_derangement(arr, max_loop=10, seed=None):
     return arr[list(random.choice(deranged_order))]
 
 
-def _find_first_match(text: str, outputs_to_match: dict[str, Any]) -> tuple[Any, Any]:
+def _find_first_match(text: str, outputs_to_match: Dict[str, Any]) -> tuple[Any, Any]:
     """Given text to parse and a dictionary of compiled regex to match, return the first match and corresponding key."""
     first_match = None
     first_key = None
@@ -118,7 +118,7 @@ def _find_first_match(text: str, outputs_to_match: dict[str, Any]) -> tuple[Any,
     return first_match, first_key
 
 
-def parse_batched_completion(completion: str, outputs_to_match: dict[str, Any]) -> list[Any]:
+def parse_batched_completion(completion: str, outputs_to_match: Dict[str, Any]) -> list[Any]:
     """Parse a single batch of completions, by returning a sequence of keys in the order in which outputs_to_match
     was matched.
 
@@ -155,7 +155,7 @@ def parse_batched_completion(completion: str, outputs_to_match: dict[str, Any]) 
 
 def make_prompts(
     df: pd.DataFrame, template: str, batch_size: int = 1, padding_example=DUMMY_EXAMPLE
-) -> tuple[list[str], pd.DataFrame]:
+) -> tuple[List[str], pd.DataFrame]:
     """Helper function to make batch prompts for a single template.
 
     Parameters
@@ -221,7 +221,7 @@ def make_prompts(
 
 
 def convert_ordinal_to_binary_preference(
-    preferences: Union[pd.DataFrame, list[dict[str, Any]]],
+    preferences: Union[pd.DataFrame, List[Dict[str, Any]]],
     ordinal_preference_key: str = "preference",
     binary_preference_key: str = "preference",
 ):
