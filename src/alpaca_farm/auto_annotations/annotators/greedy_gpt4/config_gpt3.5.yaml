@@ -12,4 +12,4 @@ greedy_gpt3.5 : # gpt-4-0314_pairwise_vH_b5_chatml-prompt
   outputs_to_match:
     1: '(?:^|\n)Output \(a\)'
     2: '(?:^|\n)Output \(b\)'
-  batch_size: 5
+  batch_size: 3
